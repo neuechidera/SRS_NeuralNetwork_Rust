@@ -10,7 +10,7 @@ struct NeuralNet{
 impl NeuralNet{
     // fn rand_weight() { // We have to import a file for rand
     //     rand
-    // }
+    }
 
     pub fn new(input_size: usize, hidden1_size: usize, hidden2_size: usize) -> Self {
 
