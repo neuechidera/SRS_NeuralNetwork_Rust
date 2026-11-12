@@ -1,4 +1,4 @@
-/*struct NeuralNet{
+struct NeuralNet{
     input_size: usize,
     hidden1_size: usize,
     hidden2_size: usize,
@@ -12,10 +12,17 @@ impl NeuralNet{
     //     rand
     // }
 
-    pub fn new(&mut self, input_size: usize, hidden1_size: usize, hidden2_size: usize) -> Self {
-        self.input_size = input_size;
-        self.hidden1_size = hidden1_size;
-        self.hidden2_size = hidden2_size;
+    pub fn new(input_size: usize, hidden1_size: usize, hidden2_size: usize) -> Self {
+
+
+        NeuralNet {
+            input_size,
+            hidden1_size,
+            hidden2_size: 0,
+            weights_hidden1_hidden2: Vec::new(),
+            weights_input_hidden1: Vec::new(),
+            weights_hidden2_output: Vec::new(),
+        }
 
     }
-}*/
+}
