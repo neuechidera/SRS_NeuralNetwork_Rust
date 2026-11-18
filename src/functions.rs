@@ -1,7 +1,21 @@
-pub fn sigmoid(x: f64) -> f64 {
-    return 1.0 / (1.0 + (-x).exp());
-}
+use std::fs::File;
+use std::io::{self, BufRead, BufReader};
 
-pub fn sigmoid_derivative(x: f64) -> f64 {
-    return 1.0 / (1.0 + (-x).exp());
+
+// Reads the data sets into vectors
+
+pub fn load_csv(filename: &str) -> (Vec<Vec<f64>>, Vec<f64>){
+    let line: String;
+    let reader = BufReader::new(File::open(filename).unwrap());
+    let mut inputs: Vec<Vec<f64>> = Vec::new();
+    let mut targets: Vec<f64> = Vec::new();
+
+    for line in reader.lines().skip(1) {
+        let line = line?;
+        let row = line.split(",").filter_map(|val| val.trim().parse::<f64>().ok()).collect();
+
+        inputs.push(row);
+    }
+
+    (inputs, targets)
 }

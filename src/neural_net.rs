@@ -1,3 +1,12 @@
+pub fn sigmoid(x: f64) -> f64 {
+    return 1.0 / (1.0 + (-x).exp());
+}
+
+pub fn sigmoid_derivative(x: f64) -> f64 {
+    return 1.0 / (1.0 + (-x).exp());
+}
+
+
 struct NeuralNet{
     input_size: usize,
     hidden1_size: usize,
@@ -13,7 +22,6 @@ impl NeuralNet{
     // }
 
     pub fn new(input_size: usize, hidden1_size: usize, hidden2_size: usize) -> Self {
-
 
         NeuralNet {
             input_size,
