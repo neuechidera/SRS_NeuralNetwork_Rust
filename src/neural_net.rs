@@ -16,13 +16,11 @@ struct NeuralNet{
     weights_hidden2_output: Vec<f64>,
 }
 
-impl NeuralNet{
+impl NeuralNet {
     // fn rand_weight() { // We have to import a file for rand
-    //     rand
-    }
+    //     rand }
 
     pub fn new(input_size: usize, hidden1_size: usize, hidden2_size: usize) -> Self {
-
         NeuralNet {
             input_size,
             hidden1_size,
@@ -31,6 +29,5 @@ impl NeuralNet{
             weights_input_hidden1: Vec::new(),
             weights_hidden2_output: Vec::new(),
         }
-
     }
 }
