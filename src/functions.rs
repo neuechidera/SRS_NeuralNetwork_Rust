@@ -33,3 +33,23 @@ pub fn normalize_data(data: &mut Vec<Vec<f64>>) {
     }
 
 }
+
+pub struct SplitData {
+    train_inputs: Vec<Vec<f64>>,
+    test_inputs: Vec<Vec<f64>>,
+    train_targets: Vec<f64>,
+    test_targets: Vec<f64>,
+}
+
+impl SplitData {
+    pub fn split_data(inputs: &[Vec<f64>], targets: &[f64], train_ratio: Option<f64>) -> SplitData {
+        let train_ratio = train_ratio.unwrap_or(0.8);
+
+        SplitData{
+            train_inputs,
+            test_inputs,
+            train_targets,
+            test_targets,
+        }
+    }
+}
