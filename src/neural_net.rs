@@ -65,7 +65,7 @@ impl NeuralNet {
                     hidden1[j] = sigmoid(hidden1[j]);
                 }
 
-                let mut hidden2: Vec<f64>
+                let mut hidden2: Vec<f64>;
 
                 if (self.hidden2_size > 0) {
                     hidden2 = Vec::with_capacity(self.hidden2_size);
@@ -84,7 +84,7 @@ impl NeuralNet {
 
             output = 0.0;
 
-            let final_hidden: &Vec<f64> = if self.hidden2_size > { &hidden2 } else{ &hidden1 };
+            let final_hidden: &Vec<f64> = if self.hidden2_size > { &hidden2 } else { &hidden1 };
             
         }
     }
