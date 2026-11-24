@@ -5,7 +5,7 @@ use rand::{thread_rng, seq::SliceRandom};
 
 // Reads the data sets into vectors
 
-pub fn load_csv(filename: &str) -> Vec<Vec<f64>>{
+pub fn load_csv(filename: &str) -> (Vec<Vec<f64>>, Vec<f64>){
     let reader = BufReader::new(File::open(filename).unwrap());
     let mut inputs: Vec<Vec<f64>> = Vec::new();
     let targets: Vec<f64> = Vec::new();
@@ -14,10 +14,13 @@ pub fn load_csv(filename: &str) -> Vec<Vec<f64>>{
         let line = line.unwrap();
         let row = line.split(",").filter_map(|val| val.trim().parse::<f64>().ok()).collect();
 
-        inputs.push(row);
+        if let Some(target) = row.pop() {
+            targets.push(target);
+            inputs.push(row);
+        }
     }
 
-    inputs
+    (inputs, targets)
 }
 
 pub fn normalize(data: &mut Vec<Vec<f64>>) {
@@ -45,6 +48,17 @@ pub struct SplitData {
 }
 
 impl SplitData {
+    pub fn new (inputs: Vec<Vec<f64>>, targets: Vec<f64>) -> Self {
+        SplitData{
+            inputs,
+            targets,
+            train_inputs: Vec::new(),
+            test_inputs: Vec::new(),
+            train_targets: Vec::new(),
+            test_targets: Vec::new(),
+        }
+    }
+    
     pub fn split_data(&mut self, train_ratio: f64) { // Rust doesn't allow for default values
         // Clearing is similar to C++
         self.train_inputs.clear();

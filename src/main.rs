@@ -20,10 +20,14 @@ fn main() {
     let (mut recall, mut f_one): (f64, f64) = (0.0, 0.0);
     let (mut recall_avg, mut recall_total, mut f_one_total, mut f_one_avg): (f64, f64, f64, f64) = (0.0, 0.0, 0.0, 0.0);
 
-    // let mut inputs: &Vec<Vec<f64>> = load_csv("crossing_data.csv");
-    //normalize(&inputs);
-    // 
+    let (mut inputs, targets) = load_csv("crossing_data.csv");
+    normalize(&mut inputs);
+
+    let mut splitter = SplitData::new(inputs, targets);
+    
     for i in 0..20 {
-        split_data(0.8);
+        splitter.split_data(0.8);
+
+        let mut nn = NeuralNet::new(7, 3, 0);
     }
 }

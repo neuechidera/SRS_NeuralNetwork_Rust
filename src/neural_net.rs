@@ -9,7 +9,7 @@ pub fn sigmoid_derivative(x: f64) -> f64 {
 }
 
 // Rust has no classes so we have to use a sturct to manage the types and data
-struct NeuralNet{
+pub struct NeuralNet{
     input_size: usize,
     hidden1_size: usize,
     hidden2_size: usize,
