@@ -5,7 +5,7 @@ use rand::{thread_rng, seq::SliceRandom};
 
 // Reads the data sets into vectors
 
-pub fn load_csv(filename: &str) -> (Vec<Vec<f64>>, Vec<f64>){
+pub fn load_csv(filename: &str) -> Vec<Vec<f64>>{
     let reader = BufReader::new(File::open(filename).unwrap());
     let mut inputs: Vec<Vec<f64>> = Vec::new();
     let targets: Vec<f64> = Vec::new();
@@ -17,10 +17,10 @@ pub fn load_csv(filename: &str) -> (Vec<Vec<f64>>, Vec<f64>){
         inputs.push(row);
     }
 
-    (inputs, targets)
+    inputs
 }
 
-pub fn normalize_data(data: &mut Vec<Vec<f64>>) {
+pub fn normalize(data: &mut Vec<Vec<f64>>) {
     let num_features: usize = data[0].len();
     let mut min_vals = vec![f64::MAX; num_features];
     let mut max_vals = vec![f64::MIN; num_features];
